@@ -82,6 +82,9 @@
         <mxCell id="gQNTEVciMCBu_twOnVj0-12" edge="1" parent="z8aCYkVm1tpA-LAWgR-0-1" source="gQNTEVciMCBu_twOnVj0-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="z8aCYkVm1tpA-LAWgR-0-52">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="vUSOzQYkPjwlcbJioHmA-4" edge="1" parent="z8aCYkVm1tpA-LAWgR-0-1" source="gQNTEVciMCBu_twOnVj0-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="vUSOzQYkPjwlcbJioHmA-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="gQNTEVciMCBu_twOnVj0-3" parent="z8aCYkVm1tpA-LAWgR-0-1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.cloudwatch;" value="Amazon CloudWatch" vertex="1">
           <mxGeometry height="110" width="80" x="830" y="255" as="geometry" />
         </mxCell>
@@ -95,9 +98,6 @@
             <mxPoint x="870" y="255" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="gQNTEVciMCBu_twOnVj0-31" parent="z8aCYkVm1tpA-LAWgR-0-1" style="fillColor=none;strokeColor=#5A6C86;dashed=1;verticalAlign=top;fontStyle=0;fontColor=#5A6C86;whiteSpace=wrap;html=1;align=left;" value="CodePipeline" vertex="1">
-          <mxGeometry height="80" width="180" x="20" y="30" as="geometry" />
-        </mxCell>
         <mxCell id="gQNTEVciMCBu_twOnVj0-33" edge="1" parent="z8aCYkVm1tpA-LAWgR-0-1" source="gQNTEVciMCBu_twOnVj0-29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="z8aCYkVm1tpA-LAWgR-0-11">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
@@ -107,27 +107,19 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="gQNTEVciMCBu_twOnVj0-29" parent="z8aCYkVm1tpA-LAWgR-0-1" style="outlineConnect=0;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;shape=mxgraph.aws3.ecr;fillColor=#F58534;gradientColor=none;" value="" vertex="1">
-          <mxGeometry height="42" width="40.25" x="270" y="49" as="geometry" />
+          <mxGeometry height="42" width="40.25" x="270" y="53.5" as="geometry" />
         </mxCell>
         <mxCell id="gQNTEVciMCBu_twOnVj0-36" parent="z8aCYkVm1tpA-LAWgR-0-1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=east;" value="コンテナイメージ" vertex="1">
           <mxGeometry height="40" width="109" x="300" y="91" as="geometry" />
         </mxCell>
-        <mxCell id="gQNTEVciMCBu_twOnVj0-40" edge="1" parent="z8aCYkVm1tpA-LAWgR-0-1" source="gQNTEVciMCBu_twOnVj0-37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gQNTEVciMCBu_twOnVj0-29">
-          <mxGeometry relative="1" as="geometry">
-            <Array as="points">
-              <mxPoint x="250" y="75" />
-              <mxPoint x="250" y="75" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="gQNTEVciMCBu_twOnVj0-37" parent="z8aCYkVm1tpA-LAWgR-0-1" style="sketch=0;points=[[0,0,0],[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0,0],[0,1,0],[0.25,1,0],[0.5,1,0],[0.75,1,0],[1,1,0],[0,0.25,0],[0,0.5,0],[0,0.75,0],[1,0.25,0],[1,0.5,0],[1,0.75,0]];outlineConnect=0;fontColor=#232F3E;fillColor=#C925D1;strokeColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.codebuild;" value="" vertex="1">
-          <mxGeometry height="51" width="51" x="90" y="49" as="geometry" />
-        </mxCell>
-        <mxCell id="gQNTEVciMCBu_twOnVj0-41" parent="z8aCYkVm1tpA-LAWgR-0-1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=east;" value="CI/CDはGitHub ActionsまたはCodePipeline" vertex="1">
-          <mxGeometry height="70" width="129" x="161" y="-10" as="geometry" />
-        </mxCell>
         <mxCell id="gQNTEVciMCBu_twOnVj0-43" parent="z8aCYkVm1tpA-LAWgR-0-1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=south;" value="トラブル対応用にECS Execを利用する" vertex="1">
           <mxGeometry height="40" width="140" x="330" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="vUSOzQYkPjwlcbJioHmA-3" parent="z8aCYkVm1tpA-LAWgR-0-1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#ffffff;fillColor=#232F3E;dashed=0;verticalLabelPosition=middle;verticalAlign=bottom;align=center;html=1;whiteSpace=wrap;fontSize=10;fontStyle=1;spacing=3;shape=mxgraph.aws4.productIcon;prIcon=mxgraph.aws4.sns;" value="Amazon SNS" vertex="1">
+          <mxGeometry height="100" width="80" x="830" y="430" as="geometry" />
+        </mxCell>
+        <mxCell id="vUSOzQYkPjwlcbJioHmA-6" parent="z8aCYkVm1tpA-LAWgR-0-1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=south;" value="通知" vertex="1">
+          <mxGeometry height="30" width="60" x="870" y="550" as="geometry" />
         </mxCell>
         <mxCell id="z8aCYkVm1tpA-LAWgR-0-15" parent="1" style="sketch=0;outlineConnect=0;fontColor=#232F3E;gradientColor=none;strokeColor=#232F3E;fillColor=#ffffff;dashed=0;verticalLabelPosition=bottom;verticalAlign=top;align=center;html=1;fontSize=12;fontStyle=0;aspect=fixed;shape=mxgraph.aws4.resourceIcon;resIcon=mxgraph.aws4.email_notification;" value="メール通知" vertex="1">
           <mxGeometry height="60" width="60" x="200" y="420" as="geometry" />
@@ -141,7 +133,7 @@
             <mxPoint x="830" y="50" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="z8aCYkVm1tpA-LAWgR-0-47" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=west;" value="SMTPはhirose-gl.comまたはAWS SES" vertex="1">
+        <mxCell id="z8aCYkVm1tpA-LAWgR-0-47" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=west;" value="SMTPはAWS SES" vertex="1">
           <mxGeometry height="60" width="120" x="120" y="510" as="geometry" />
         </mxCell>
         <mxCell id="z8aCYkVm1tpA-LAWgR-0-68" edge="1" parent="1" source="z8aCYkVm1tpA-LAWgR-0-59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=classic;startFill=1;" target="z8aCYkVm1tpA-LAWgR-0-52">
@@ -162,11 +154,11 @@
               <mxPoint x="110" y="340" />
               <mxPoint x="110" y="340" />
             </Array>
-            <mxPoint x="170" y="340" as="targetPoint" />
+            <mxPoint x="120" y="340" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="z8aCYkVm1tpA-LAWgR-0-69" parent="1" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;" value="利用者" vertex="1">
-          <mxGeometry height="60" width="30" x="60" y="305" as="geometry" />
+          <mxGeometry height="60" width="30" x="40" y="305" as="geometry" />
         </mxCell>
         <mxCell id="gQNTEVciMCBu_twOnVj0-18" edge="1" parent="1" source="gQNTEVciMCBu_twOnVj0-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gQNTEVciMCBu_twOnVj0-3">
           <mxGeometry relative="1" as="geometry">
@@ -193,14 +185,19 @@
         <mxCell id="gQNTEVciMCBu_twOnVj0-20" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/generic_server.svg;" value="ログインAPI" vertex="1">
           <mxGeometry height="50" width="28.000000000000004" x="1310" y="35" as="geometry" />
         </mxCell>
-        <mxCell id="gQNTEVciMCBu_twOnVj0-38" edge="1" parent="1" source="gQNTEVciMCBu_twOnVj0-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gQNTEVciMCBu_twOnVj0-37">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="gQNTEVciMCBu_twOnVj0-38" edge="1" parent="1" source="gQNTEVciMCBu_twOnVj0-27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" target="gQNTEVciMCBu_twOnVj0-29">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="410" y="94.5" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="gQNTEVciMCBu_twOnVj0-27" parent="1" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" value="" vertex="1">
           <mxGeometry height="42" width="42" x="228" y="73.5" as="geometry" />
         </mxCell>
-        <mxCell id="gQNTEVciMCBu_twOnVj0-35" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=west;" value="ソースコード" vertex="1">
-          <mxGeometry height="40" width="89" x="220" y="100" as="geometry" />
+        <mxCell id="gQNTEVciMCBu_twOnVj0-35" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=west;" value="ソースコード&lt;div&gt;Githb Actions&lt;br&gt;&lt;div&gt;OIDCでECRへpush&lt;/div&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="109" x="200" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="vUSOzQYkPjwlcbJioHmA-5" edge="1" parent="1" source="vUSOzQYkPjwlcbJioHmA-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gQNTEVciMCBu_twOnVj0-5">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
