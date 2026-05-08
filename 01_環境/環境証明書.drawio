@@ -193,8 +193,8 @@
         <mxCell id="gQNTEVciMCBu_twOnVj0-27" parent="1" style="dashed=0;outlineConnect=0;html=1;align=center;labelPosition=center;verticalLabelPosition=bottom;verticalAlign=top;shape=mxgraph.weblogos.github" value="" vertex="1">
           <mxGeometry height="42" width="42" x="228" y="73.5" as="geometry" />
         </mxCell>
-        <mxCell id="gQNTEVciMCBu_twOnVj0-35" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=west;" value="ソースコード&lt;div&gt;Githb Actions&lt;br&gt;&lt;div&gt;OIDCでECRへpush&lt;/div&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="70" width="109" x="200" y="100" as="geometry" />
+        <mxCell id="gQNTEVciMCBu_twOnVj0-35" parent="1" style="whiteSpace=wrap;html=1;shape=mxgraph.basic.rectCallout;dx=8.4;dy=15;boundedLbl=1;align=left;direction=west;" value="ソースコード&lt;div&gt;AWS CLIで手動でECRへpush&lt;/div&gt;" vertex="1">
+          <mxGeometry height="70" width="129" x="180" y="100" as="geometry" />
         </mxCell>
         <mxCell id="vUSOzQYkPjwlcbJioHmA-5" edge="1" parent="1" source="vUSOzQYkPjwlcbJioHmA-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="gQNTEVciMCBu_twOnVj0-5">
           <mxGeometry relative="1" as="geometry" />
