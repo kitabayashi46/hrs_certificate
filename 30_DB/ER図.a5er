@@ -83,8 +83,8 @@ TextAlign=$0
 
 [Shape]
 Page=縦持
-Left=19
-Top=552
+Left=20
+Top=547
 ZOrder=77
 Width=2790
 Height=1219
@@ -136,22 +136,22 @@ Position="縦持",100,700,713,573
 ZOrder=78
 
 [Entity]
-PName=HrsChemicalSubstanceEntry
-LName=証明書申請入力
+PName=application_products
+LName=申請製品
 Comment=    
 TableInnerOption=
 TableOption=
 Page=縦持
 Left=1000
 Top=750
-Field="サロゲートキー","id","number",,0,"","",$FFFFFFFF,""
-Field="申請ID","applicationId","number",,,"","",$FFFFFFFF,""
+Field="サロゲートキー","id","number",,,"","",$FFFFFFFF,""
+Field="申請ID","applicationId","number",,0,"","",$FFFFFFFF,""
 Field="CLコード","clCode","string",,,"","申請証明書のカンマ区切り配列\nicp:ICP証明書\nsds:SDS証明書\nsubstances_table:成分表\nrohs:RoHS適合証明書\nhalogen_free:ハロゲンフリー証明書\nais:AIS証明書\nchem_sherpa:chemSHERP\nsvhc:SVHC",$FFFFFFFF,""
 Field="製品名","productName","string",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20260605140306
+ModifiedDateTime=20260605150941
 Position="縦持",1000,750,441,369
 ZOrder=87
 
@@ -204,7 +204,7 @@ TableOption=
 Page=縦持
 Left=900
 Top=1350
-Field="サロゲートキー","id","number",,,"","",$FFFFFFFF,""
+Field="サロゲートキー","id","number",,0,"","",$FFFFFFFF,""
 Field="お知らせ本文（日本語・HTML）","contentJa","string",,,"","",$FFFFFFFF,""
 Field="お知らせ本文（英語・HTML）","contentEn","string",,,"","",$FFFFFFFF,""
 Field="データバージョン情報（日本語・HTML）","dateVersionJa","string",,,"","",$FFFFFFFF,""
@@ -214,7 +214,7 @@ Field="更新者アカウントID","updateBy","string",,,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20260605144512
+ModifiedDateTime=20260605151450
 Position="縦持",900,1350,605,228
 ZOrder=145
 
@@ -227,19 +227,18 @@ TableOption=
 Page=縦持
 Left=1600
 Top=1350
-Field="西暦年","year","number",,,"","",$FFFFFFFF,""
+Field="西暦年","year","number",,0,"","",$FFFFFFFF,""
 Field="最終連番","lastSeq","number",,,"","",$FFFFFFFF,""
-Field="作成日","createdAt","@DATE",,0,"","",$FFFFFFFF,""
 EffectMode=None
 Color=$000000
 BkColor=$FFFFFF
-ModifiedDateTime=20260605144916
+ModifiedDateTime=20260605151351
 Position="縦持",1600,1350,397,102
 ZOrder=146
 
 [Relation]
 Entity1=APPLICATIONS
-Entity2=HrsChemicalSubstanceEntry
+Entity2=application_products
 RelationType1=1
 RelationType2=3
 Fields1=id
@@ -288,7 +287,7 @@ ZOrder=148
 
 [Relation]
 Entity1=product_master
-Entity2=HrsChemicalSubstanceEntry
+Entity2=application_products
 RelationType1=1
 RelationType2=3
 Fields1=clcode
