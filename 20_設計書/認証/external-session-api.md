@@ -36,9 +36,31 @@ Authorization: Bearer <session_token>
 - `<session_token>` は、対象ユーザーが会員サイトにログインしている間に有効なセッショントークンです。
 - トークンは**不透明な文字列**として扱ってください（内容の解釈・改変は不要かつ非対応です）。
 - セッションが**無効・期限切れ**の場合、トークンを付与しても `401 Unauthorized` を返します。
-- トークンの取得・受け渡し方法は連携構成に依存します。詳細は別途連携設計をご確認ください。
 
-> **セキュリティ**: セッショントークンは認証情報です。ログや URL クエリに残さず、サーバー間通信（HTTPS）でのみ扱ってください。
+### トークン（uid）の受け取り方
+
+会員サイトから外部サイトへ遷移する際、遷移先 URL の **`uid` クエリパラメータ**にセッショントークンが付与されます。
+
+```
+https://your-site.example.com/?uid=<session_token>
+```
+
+外部サイト側では、この `uid` の値を取り出し、そのまま本 API の `Authorization: Bearer` に指定してください。
+
+1. 会員サイトのリンクから `https://your-site.example.com/?uid=xxxxxxxx` で遷移してくる
+2. URL のクエリ `uid` を取得する
+3. `Authorization: Bearer ${uid}` を付けて本 API を呼び出す
+
+```javascript
+// 遷移先ページ（外部サイト）での取得例
+const uid = new URL(location.href).searchParams.get("uid");
+// → この uid を Bearer トークンとして本 API に渡す
+```
+
+> **セキュリティ**:
+> - セッショントークンは認証情報です。**ログや保存領域に残さない**でください。
+> - `uid` は遷移直後に取得し、以降は URL から除去（`history.replaceState` 等）することを推奨します。
+> - 本 API の呼び出しは**サーバー間通信（HTTPS）**で行ってください。
 
 ---
 

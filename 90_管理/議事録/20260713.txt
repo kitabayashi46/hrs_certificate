@@ -1,0 +1,15 @@
+11:00～11:30 ヒロセ 金様、AA 榎本
+Cate IPアドレス⇒HRSが調査
+ACM証明書用のNS情報をAAからHRSへ提示する。
+SES送信ドメイン、⇒優先調査。hirose-gl.comの場合は時間かかる
+SNS通知先メールアドレス⇒ヒロセ側で検討
+リージョン:tokyo
+ECS⇒S3へのアクセス可能か？
+⇒IPで制限している。アイレットへ依頼する必要あり
+
+■本社IP
+111.98.250.151/32
+210.227.234.114/32
+■環境証明書ドメイン
+PROD: chemical_substance.hirose.com
+STG: stg_chemical_substance.hirose.com
