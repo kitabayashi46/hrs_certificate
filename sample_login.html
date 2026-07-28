@@ -6,17 +6,22 @@
 	<title>リンクページ</title>
 </head>
 <body>
+	<h3>Local</h3>
 	<ul>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-customer001">ユーザ1</a></li>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-customer002">ユーザ2</a></li>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-customer003">ユーザ3</a></li>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-customer004">ユーザ4</a></li>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-customer005">ユーザ5</a></li>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-staff001">スタッフ1</a></li>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-staff002">スタッフ2</a></li>
-	<li><a href="http://192.168.10.101:3000/login/mock-hash-XXX">不正ユーザ</a></li>
-	<li><a href="http://192.168.10.101:3000/staff/announcements">お知らせ登録</a></li>
-	<li><a href="http://192.168.10.101:3000/staff/applications">申請状況監視</a></li>
+		<li><a href="http://localhost:3000/login/?uid=mock-hash-customer001">ユーザ1</a></li>
+		<li><a href="http://localhost:3000/login/?uid=mock-hash-staff001">スタッフ1</a></li>
+		<li><a href="http://localhost:3000/staff/announcements">お知らせ登録</a></li>
+		<li><a href="http://localhost:3000/staff/applications">申請状況監視</a></li>
+		<li><a href="http://localhost:3000/login/?uid=mock-hash-XXX">不正ユーザ</a></li>
+		<li><a href="http://localhost:3000/login/?uid=mock-hash-forbidden-ip">403エラー</a></li>
+		<li><a href="http://localhost:3000/login/?uid=mock-hash-user-not-found">404エラー</a></li>
+	</ul>
+	<h3>STG</h3>
+	<ul>
+		<li><a href="https://stg-chem.skysoft.jp/login/?uid=mock-hash-customer002">ユーザ2</a></li>
+		<li><a href="https://stg-chem.skysoft.jp/login/?uid=mock-hash-staff002">スタッフ2</a></li>
+		<li><a href="https://stg-chem.skysoft.jp/staff/announcements">お知らせ登録</a></li>
+		<li><a href="https://stg-chem.skysoft.jp/staff/applications">申請状況監視</a></li>
 	</ul>
 </body>
 </html>

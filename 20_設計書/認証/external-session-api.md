@@ -1,15 +1,19 @@
 # 外部連携: 認証済みユーザー情報取得 API
 
 外部 Web サイトから、HIROSE 会員サイトでログイン中のユーザー情報を取得するための API です。
-セッショントークン（Bearer）を検証し、**会員ID・氏名・ロール**を返します。
+会員サイトが発行する**ハンドオフトークン（Bearer）**を検証し、**会員ID・メールアドレス・氏名・ロール**を返します。
 
 - **対象読者**: 本 API を呼び出す外部サイトの開発者
-- **認証方式**: Bearer トークン（セッショントークン）
+- **認証方式**: Bearer トークン（会員サイトが発行する短命・単回利用のハンドオフトークン）
 - **アクセス制限**: 送信元 IP の許可リスト制限あり（下記参照）
+
+> **注意**: URL(uid)に載るのは生のセッショントークンではなく、会員サイトが発行する**短命・単回利用のハンドオフトークン**です。漏えい時の影響を最小化するため、1 度の取得 API 呼び出しで無効化されます。
 
 ---
 
 ## エンドポイント
+
+外部サイト開発者が利用するのは以下の**取得 API** です。
 
 | 項目 | 内容 |
 | --- | --- |
@@ -19,48 +23,51 @@
 
 完全な URL の例:
 
-```
+```text
 GET {API_BASE_URL}/api/v1/external/session/user
 ```
+
+> 会員サイト（storefront）側は、遷移前に発行 API `POST /api/v1/external/session/handoff`（Cookie セッション認証）でハンドオフトークンを取得し、遷移 URL の `uid` に載せます。この発行 API は外部サイト開発者は使用しません。
 
 ---
 
 ## 認証
 
-`Authorization` ヘッダーに、セッショントークンを **Bearer 形式**で指定します。
+`Authorization` ヘッダーに、会員サイトが発行した**ハンドオフトークン**を **Bearer 形式**で指定します。
 
-```
-Authorization: Bearer <session_token>
+```http
+Authorization: Bearer <handoff_token>
 ```
 
-- `<session_token>` は、対象ユーザーが会員サイトにログインしている間に有効なセッショントークンです。
-- トークンは**不透明な文字列**として扱ってください（内容の解釈・改変は不要かつ非対応です）。
-- セッションが**無効・期限切れ**の場合、トークンを付与しても `401 Unauthorized` を返します。
+- `<handoff_token>` は、会員サイトが発行する**短命・単回利用**の不透明なトークンです（内容の解釈・改変は不要かつ非対応です）。
+- トークンが**無効・期限切れ・使用済み**の場合、`401 Unauthorized` を返します。
+- 単回利用のため、**取得 API の呼び出しは 1 回のみ**有効です。取得したユーザー情報は外部サイト側のセッションに保持してください。
 
 ### トークン（uid）の受け取り方
 
-会員サイトから外部サイトへ遷移する際、遷移先 URL の **`uid` クエリパラメータ**にセッショントークンが付与されます。
+会員サイトから外部サイトへ遷移する際、遷移先 URL の **`uid` クエリパラメータ**にハンドオフトークンが付与されます。
+（会員サイト側は遷移前に発行 API `POST /api/v1/external/session/handoff` でトークンを取得し、URL に載せます。外部サイト開発者はこの発行手順を意識する必要はありません。）
 
-```
-https://your-site.example.com/?uid=<session_token>
+```text
+https://your-site.example.com/?uid=<handoff_token>
 ```
 
-外部サイト側では、この `uid` の値を取り出し、そのまま本 API の `Authorization: Bearer` に指定してください。
+外部サイト側では、この `uid` の値を取り出し、**バックエンドへ引き渡してから**本 API の `Authorization: Bearer` に指定してください。
 
 1. 会員サイトのリンクから `https://your-site.example.com/?uid=xxxxxxxx` で遷移してくる
-2. URL のクエリ `uid` を取得する
-3. `Authorization: Bearer ${uid}` を付けて本 API を呼び出す
+2. URL のクエリ `uid` を取得し、外部サイトのバックエンドへ送る
+3. バックエンドから `Authorization: Bearer ${uid}` を付けて本 API を **1 回だけ** 呼び出す
 
 ```javascript
-// 遷移先ページ（外部サイト）での取得例
+// 遷移先ページ（外部サイト・フロント）での取得例
 const uid = new URL(location.href).searchParams.get("uid");
-// → この uid を Bearer トークンとして本 API に渡す
+// → この uid を自サイトのバックエンドへ渡し、バックエンドから本 API を呼び出す
 ```
 
 > **セキュリティ**:
-> - セッショントークンは認証情報です。**ログや保存領域に残さない**でください。
+> - ハンドオフトークンは認証情報です。**ログや保存領域に残さない**でください。
 > - `uid` は遷移直後に取得し、以降は URL から除去（`history.replaceState` 等）することを推奨します。
-> - 本 API の呼び出しは**サーバー間通信（HTTPS）**で行ってください。
+> - 本 API の呼び出しは**サーバー間通信（HTTPS）**で行ってください（IP 許可リストの対象は呼び出し元サーバーの IP です）。
 
 ---
 
@@ -96,6 +103,7 @@ const uid = new URL(location.href).searchParams.get("uid");
 ```json
 {
   "userId": "1024",
+  "email": "taro.yamada@example.com",
   "name": "山田 太郎",
   "role": "GENERAL"
 }
@@ -104,6 +112,7 @@ const uid = new URL(location.href).searchParams.get("uid");
 | フィールド | 型 | 説明 |
 | --- | --- | --- |
 | `userId` | `string` | 会員ID（連番）。会員を一意に識別するIDです |
+| `email` | `string` | メールアドレス |
 | `name` | `string` | ユーザー氏名（`姓 名`）。氏名未設定の場合は `ユーザー` を返します |
 | `role` | `string \| null` | ロール（下表）。未設定の場合は `null` |
 
@@ -135,11 +144,11 @@ const uid = new URL(location.href).searchParams.get("uid");
 | HTTP | `code` | 発生条件 |
 | --- | --- | --- |
 | `401` | `UNAUTHORIZED` | `Authorization` ヘッダーが無い / Bearer トークンが空 |
-| `401` | `UNAUTHORIZED` | セッションが無効、または期限切れ |
+| `401` | `UNAUTHORIZED` | ハンドオフトークンが無効・期限切れ・使用済み、または紐づくセッションが期限切れ |
 | `403` | `FORBIDDEN` | 許可されていない IP からのアクセス |
 | `404` | `NOT_FOUND` | セッションは有効だが、対象ユーザーが存在しない（退会済み等） |
 
-> セッション切れ時は、トークンを付与していても必ず `401` を返します。呼び出し側では `401` を「未ログイン／要再ログイン」として扱ってください。
+> トークンが無効・使用済み・期限切れの場合は必ず `401` を返します。呼び出し側では `401` を「未ログイン／要再ログイン」として扱ってください。
 
 ---
 
@@ -149,16 +158,20 @@ const uid = new URL(location.href).searchParams.get("uid");
 
 ```bash
 curl -X GET "{API_BASE_URL}/api/v1/external/session/user" \
-  -H "Authorization: Bearer <session_token>"
+  -H "Authorization: Bearer <handoff_token>"
 ```
 
-### JavaScript（fetch）
+### JavaScript（Node.js / サーバー間通信）
+
+この API は送信元 IP 許可リストで制限されます。ブラウザから直接呼び出すと許可判定の対象が各利用者の IP になり通常 `403` となるため、**外部サイトのバックエンドから**呼び出してください。
 
 ```javascript
+// 外部サイトのバックエンド（サーバー）で実行する
 const res = await fetch(`${API_BASE_URL}/api/v1/external/session/user`, {
   method: "GET",
   headers: {
-    Authorization: `Bearer ${sessionToken}`,
+    // ブラウザ経由で受け取り、サーバーへ引き渡したハンドオフトークン
+    Authorization: `Bearer ${handoffToken}`,
   },
 });
 
@@ -166,7 +179,7 @@ if (res.status === 401) {
   // 未ログイン / セッション切れ → 再ログインへ誘導
 } else if (res.ok) {
   const user = await res.json();
-  // user.userId, user.name, user.role
+  // user.userId, user.email, user.name, user.role
 }
 ```
 
@@ -176,7 +189,7 @@ if (res.status === 401) {
 $ch = curl_init("{$apiBaseUrl}/api/v1/external/session/user");
 curl_setopt_array($ch, [
     CURLOPT_RETURNTRANSFER => true,
-    CURLOPT_HTTPHEADER     => ["Authorization: Bearer {$sessionToken}"],
+    CURLOPT_HTTPHEADER     => ["Authorization: Bearer {$handoffToken}"],
 ]);
 $body   = curl_exec($ch);
 $status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -184,7 +197,7 @@ curl_close($ch);
 
 if ($status === 200) {
     $user = json_decode($body, true);
-    // $user['userId'], $user['name'], $user['role']
+    // $user['userId'], $user['email'], $user['name'], $user['role']
 } elseif ($status === 401) {
     // 未ログイン / セッション切れ
 }
@@ -204,4 +217,7 @@ if ($status === 200) {
   A. 送信元サーバーの IP が許可リストに登録されていません。グローバル IP を API 運用担当へご連絡ください。
 
 - **Q. トークンはあるのに 401 になります。**
-  A. セッションが期限切れ・無効化されています。ユーザーに再ログインを促してください。
+  A. ハンドオフトークンが期限切れ・使用済み（単回利用のため 2 回目以降は無効）か、紐づくセッションが失効しています。会員サイトからの再遷移（トークン再発行）が必要です。
+
+- **Q. なぜ取得 API は 1 回しか呼べないのですか？**
+  A. URL に載るトークンの漏えい被害を最小化するため、ハンドオフトークンは単回利用です。取得したユーザー情報は外部サイト側のセッションに保持してください。
